@@ -1,0 +1,5 @@
+pymupdf
+#import os and sys
+transformers
+sentence-transformers
+faiss-cpu
