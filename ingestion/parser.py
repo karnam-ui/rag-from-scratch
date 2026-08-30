@@ -1,3 +1,5 @@
+from pydoc import doc
+
 import fitz  # PyMuPDF
 import os
 class PDFParser:
@@ -24,3 +26,23 @@ class PDFParser:
     def length(self):
         doc = fitz.open(self.file_path)
         return len(doc)
+
+    def extract_tables(self):
+        doc = fitz.open(self.file_path)
+
+        for page in doc:
+            tables = page.find_tables()
+
+            print(f"Page {page.number + 1}: {len(tables.tables)} tables")
+
+            for table in tables.tables:
+                print(table.extract())
+                
+    def inspect_words(self, page_number=1):
+        doc = fitz.open(self.file_path)
+        page = doc[page_number - 1]
+
+        words = page.get_text("words")
+
+        for word in words:
+            print(word)

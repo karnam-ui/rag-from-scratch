@@ -8,7 +8,7 @@ if str(PROJECT_ROOT) not in sys.path:
 from ingestion.parser import PDFParser
 
 parser = PDFParser(r"/Users/suhaas/Downloads/Morphex.pdf")
-pages = parser.parse()
-length = parser.length()
-print(pages)
-print(length)
+
+t = parser.extract_tables()
+print(t)
+
